@@ -21,5 +21,4 @@ function [t, X] = Euler_Method(f, initial_point, final_point, h, initial_conditi
     for n = 1:(length(t)-1)
         X(:,n+1) = X(:,n) + h * f(X(1,n), X(2,n), X(3,n));
     end 
-
 end
