@@ -14,9 +14,9 @@ initial_conditions = [
 
 % Create the system
 differential_system = @(x, y, z) [
-    x - y + 2*z + (a1*(x.^2)*z);
-    3*x - z + (a2*x*y);
-    2*x + y + (a3*(y.^2))
+    3*x - 2*y + 2*z + (a1*(x.^2)*z);
+    2*x + z + (a2*x*y);
+    4*x + 2*z + (a3*(y.^2))
 ];
 
 wrapped_differential_system = @(t, Y) differential_system(Y(1), Y(2), Y(3));

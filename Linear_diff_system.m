@@ -14,20 +14,19 @@ initial_conditions = [
 
 % Create the system
 differential_system = @(x, y, z) [
-    x - y + 2*z + (a1*(x.^2)*z);
-    3*x - z + (a2*x*y);
-    2*x + y + (a3*(y.^2))
+    3*x - 2*y + 2*z + (a1*(x.^2)*z);
+    2*x + z + (a2*x*y);
+    4*x + 2*z + (a3*(y.^2))
 ];
 
 wrapped_differential_system = @(t, Y) differential_system(Y(1), Y(2), Y(3));
 
-
 [t, euler_numerical_solution] = Euler_Method(differential_system, 0, 5, 0.1, initial_conditions);
 [t, RK45_numerical_solution] = Classical_Runge_Kutta(wrapped_differential_system, 0, 5, 0.1, initial_conditions);
 
-x = @(t) 0.1041 * 0.80 * exp(2.51*t) + 2 * 0.4584 * exp(-0.76*t) .* cos(1.79*t) - 2 * 0.1499 * exp(-0.76*t) .* sin(1.79*t);
-y = @(t) 0.1041 * 0.50 * exp(2.51*t) + 2 * (-0.75*0.4584 + 2.12*0.1499) * exp(-0.76*t) .* cos(1.79*t) + 2 * (-2.12*0.4584 - 0.75*0.1499) * exp(-0.76*t) .* sin(1.79*t);
-z = @(t) 0.1041 * 1.00 * exp(2.51*t) + 2 * (-1.26*0.4584 + 0.17*0.1499) * exp(-0.76*t) .* cos(1.79*t) + 2 * (-0.17*0.4584 - 1.26*0.1499) * exp(-0.76*t) .* sin(1.79*t);
+x = @(t) -(exp(4*t)/2) + exp(3*t) + 1/2;
+y = @(t) 1/4 - exp(4*t)/4;
+z = @(t) -(exp(4*t)/2) - 1/2;
 analytical_solution = [x(t); y(t); z(t)];
 
 figure(1);
