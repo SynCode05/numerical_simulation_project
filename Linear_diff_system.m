@@ -21,8 +21,8 @@ differential_system = @(x, y, z) [
 
 wrapped_differential_system = @(t, Y) differential_system(Y(1), Y(2), Y(3));
 
-[t, euler_numerical_solution] = Euler_Method(differential_system, 0, 5, 0.01, initial_conditions);
-[t, RK45_numerical_solution] = Classical_Runge_Kutta(wrapped_differential_system, 0, 5, 0.01, initial_conditions);
+[t, euler_numerical_solution] = Euler_Method(differential_system, 0, 5, 0.1, initial_conditions);
+[t, RK45_numerical_solution] = Classical_Runge_Kutta(wrapped_differential_system, 0, 5, 0.1, initial_conditions);
 
 x = @(t) (0.5) + exp(3 * t) - (0.5) * exp(4 * t);
 y = @(t) (0.25) - (0.25) * exp(4 * t);
