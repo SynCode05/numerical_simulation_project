@@ -15,18 +15,18 @@ initial_conditions = [
 % Create the system
 differential_system = @(x, y, z) [
     3*x - 2*y + 2*z + (a1*(x.^2)*z);
-    2*x + z + (a2*x*y);
-    4*x + 2*z + (a3*(y.^2))
+    2*y + z + (a2*x*y);
+    4*y + 2*z + (a3*(y.^2))
 ];
 
 wrapped_differential_system = @(t, Y) differential_system(Y(1), Y(2), Y(3));
 
-[t, euler_numerical_solution] = Euler_Method(differential_system, 0, 5, 0.1, initial_conditions);
-[t, RK45_numerical_solution] = Classical_Runge_Kutta(wrapped_differential_system, 0, 5, 0.1, initial_conditions);
+[t, euler_numerical_solution] = Euler_Method(differential_system, 0, 5, 0.01, initial_conditions);
+[t, RK45_numerical_solution] = Classical_Runge_Kutta(wrapped_differential_system, 0, 5, 0.01, initial_conditions);
 
-x = @(t) -(exp(4*t)/2) + exp(3*t) + 1/2;
-y = @(t) 1/4 - exp(4*t)/4;
-z = @(t) -(exp(4*t)/2) - 1/2;
+x = @(t) (0.5) + exp(3 * t) - (0.5) * exp(4 * t);
+y = @(t) (0.25) - (0.25) * exp(4 * t);
+z = @(t) (-0.5) - (0.5) * exp(4 * t);
 analytical_solution = [x(t); y(t); z(t)];
 
 figure(1);
