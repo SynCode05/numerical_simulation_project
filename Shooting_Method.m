@@ -16,5 +16,5 @@ end
 % --- ODE system ---
 function dudx = up(x, u, p)
     q = @(x) p.q0 * sin(pi * x / p.L);
-    dudx = [u(2); -q(x) / (p.E * p.I)];
+    dudx = [u(2); p.upp(x)];
 end
