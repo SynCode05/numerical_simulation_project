@@ -1,48 +1,20 @@
-clc; clear; close all;
+function [t, X] = Shooting_Method(params)
 
-% Define the initial guess range for u'(0)
-s1 = 0; 
-s2 = 1; 
+    % Shooting
+    z_correct = fzero(@(z) bar_res(z, params), [params.x0, params.xf]);
 
-% Ensure the residuals have opposite signs before using fzero
-res1 = shoot_residual(s1);
-res2 = shoot_residual(s2);
-
-while res1 * res2 > 0 % Expand range until signs differ
-    s1 = s1 - 1;
-    s2 = s2 + 1;
-    res1 = shoot_residual(s1);
-    res2 = shoot_residual(s2);
+    % Optional: plot the final solution
+    [t, X] = ode45(@(x,u) up(x,u,params), linspace(0, params.L, 1000), [params.u0; z_correct]);
 end
 
-% Find the correct initial slope u'(0) using fzero
-s_correct = fzero(@shoot_residual, [s1, s2]);
-
-% Solve the IVP using the correct s
-[x, u] = solve_ivp(s_correct);
-
-% Plot the solution
-plot(x, u(:,1), 'b-', 'LineWidth', 2);
-xlabel('x'); ylabel('u(x)');
-title('Solution using Shooting Method');
-grid on;
-
-% Function defining the residual at x=1
-function res = shoot_residual(s)
-    [x, u] = solve_ivp(s);
-    res = u(end, 1); % Residual should be u(1) = 0
+% --- Residual function ---
+function r = bar_res(z, p)
+    [~, X] = ode45(@(x,u) up(x,u,p), [p.x0, p.xf], [p.u0; z]);
+    r = X(end,1) - p.uf;  % residual = u(xf) - target
 end
 
-% Function to solve the IVP using ode45
-function [x, u] = solve_ivp(s)
-    xspan = [0, 1]; % Interval
-    u0 = [0; s]; % Initial conditions [u(0), u'(0)]
-    [x, u] = ode45(@(x, u) ode_system(x, u), xspan, u0);
-end
-
-% Define the system of ODEs
-function du = ode_system(x, u)
-    du = zeros(2,1);
-    du(1) = u(2);
-    du(2) = x - u(1); % Fixed: x is correctly passed to the function
+% --- ODE system ---
+function dudx = up(x, u, p)
+    q = @(x) p.q0 * sin(pi * x / p.L);
+    dudx = [u(2); -q(x) / (p.E * p.I)];
 end
