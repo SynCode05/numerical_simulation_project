@@ -49,7 +49,7 @@ plot(t, abs(analytical_solution(3,:) - euler_numerical_solution(3,:)), 'b--', 'L
 
 hold off;
 
-legend('x(t) Euler Numerical', 'y(t) Euler Numerical', 'z(t) Euler Numerical', 'x(t) Analytical', 'y(t) Analytical', 'z(t) Analytical', 'x(t) Error', 'y(t) Error', 'z(t) Error')
+legend('x(t) Euler Numerical', 'y(t) Euler Numerical', 'z(t) Euler Numerical', 'x(t) Analytical', 'y(t) Analytical', 'z(t) Analytical', 'x(t) Error', 'y(t) Error', 'z(t) Error', 'Location', 'northwest')
 xlabel('Time t')
 ylabel('Solution value')
 title('Analytical Solution of Linear System (Euler Method)')
@@ -75,7 +75,7 @@ plot(t, abs(analytical_solution(3,:) - RK45_numerical_solution(3,:)), 'b--', 'Li
 
 hold off;
 
-legend('x(t) Numerical RK45', 'y(t) Numerical RK45', 'z(t) Numerical RK45', 'x(t) Analytical', 'y(t) Analytical', 'z(t) Analytical', 'x(t) Error', 'y(t) Error', 'z(t) Error')
+legend('x(t) Numerical RK45', 'y(t) Numerical RK45', 'z(t) Numerical RK45', 'x(t) Analytical', 'y(t) Analytical', 'z(t) Analytical', 'x(t) Error', 'y(t) Error', 'z(t) Error', 'Location', 'northwest')
 xlabel('Time t')
 ylabel('Solution value')
 title('Analytical Solution of Linear System (RK45 Method)')
@@ -101,7 +101,7 @@ plot(t, abs(euler_numerical_solution(3,:) - RK45_numerical_solution(3,:)), 'b--'
 
 hold off;
 
-legend('x(t) Numerical RK45', 'y(t) Numerical RK45', 'z(t) Numerical RK45', 'x(t) Numerical Euler', 'y(t) Numerical Euler', 'z(t) Numerical Euler', 'x(t) Error', 'y(t) Error', 'z(t) Error')
+legend('x(t) Numerical RK45', 'y(t) Numerical RK45', 'z(t) Numerical RK45', 'x(t) Numerical Euler', 'y(t) Numerical Euler', 'z(t) Numerical Euler', 'x(t) Error', 'y(t) Error', 'z(t) Error', 'Location', 'northwest')
 xlabel('Time t')
 ylabel('Solution value')
 title('Analytical Solution of Linear System (RK45 vs Euler Method)')

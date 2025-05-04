@@ -43,7 +43,7 @@ plot(t, abs(euler_numerical_solution(3,:) - RK45_numerical_solution(3,:)), 'b--'
 
 hold off;
 
-legend('x(t) Numerical RK45', 'y(t) Numerical RK45', 'z(t) Numerical RK45', 'x(t) Numerical Euler', 'y(t) Numerical Euler', 'z(t) Numerical Euler', 'x(t) Error', 'y(t) Error', 'z(t) Error')
+legend('x(t) Numerical RK45', 'y(t) Numerical RK45', 'z(t) Numerical RK45', 'x(t) Numerical Euler', 'y(t) Numerical Euler', 'z(t) Numerical Euler', 'x(t) Error', 'y(t) Error', 'z(t) Error', 'Location', 'southwest')
 xlabel('Time t');
 ylabel('Solution value');
 title('Numerical Solution of Nonlinear System (RK45 vs Euler Method)');
