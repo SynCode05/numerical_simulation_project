@@ -12,7 +12,7 @@ params.uf = 0;
 params.upp = @(x) -(params.q0 * sin(pi * x / params.L)) / (params.E * params.I);
 
 [t, X] = Shooting_Method(params);
-plot(t, X(:,1), 'b-', 'LineWidth', 2);
+plot(t, X(1,:), 'b-', 'LineWidth', 2);
 xlabel('x'); ylabel('u(x)');
 title('Beam Deflection using Shooting Method');
 grid on;
